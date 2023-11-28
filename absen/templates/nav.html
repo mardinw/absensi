@@ -1,0 +1,65 @@
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="{{ url_for('main.index') }}">Absensi <sup>app</sup></a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+    <!-- Navbar Search-->
+    <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+        <!--div class="input-group">
+            <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+            <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
+        </div-->
+    </form>
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                {% if current_user.is_authenticated %}
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('profil.index', username=current_user.username) }}">Profil</a>
+                </li>
+                {% endif %}
+                {% if current_user.is_administrator() %}
+                <li>
+                    <a class="dropdown-item" href="{{ url_for('admin.index', username=current_user.username) }}" target="_blank">Akses Backend</a>
+                </li>
+                {% endif %}
+                <li><a class="dropdown-item" href="{{ url_for('auth.change_password') }}">Ubah Password</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                {% if current_user.is_authenticated %}
+                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Keluar</a></li>
+                {% else %}
+                <li><a class="dropdown-item" href="{{ url_for('auth.login') }}">Masuk</a></li>
+                {% endif %}
+            </ul>
+        </li>
+    </ul>
+</nav>
+<div id="layoutSidenav">
+    <div id="layoutSidenav_nav">
+        <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+            <div class="sb-sidenav-menu">
+                <div class="nav">
+                    {% if current_user.is_administrator() %}
+                    <a class="nav-link {% if active_page == 'main.index' %}active{% endif %}" href="{{ url_for('main.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        Dashboard
+                    </a>
+                    <a class="nav-link {% if active_page == 'main.reports' %}active{% endif %}" href="{{ url_for('main.reports') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                        Report Pegawai
+                    </a>
+                    {% endif %}
+                    <a class="nav-link {% if active_page == 'hadir.index' or active_page== 'hadir.checkin' or active_page == 'hadir.checkout' or active_page == 'hadir.izin' or active_page == 'hadir.create_izin' or active_page == 'hadir.sick' %}active{% endif %}" href="{{ url_for('hadir.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-calendar-day"></i></div>
+                        Absen
+                    </a>
+                    <a class="nav-link" href="#">
+                      <div class="sb-nav-link-icon"><i class="fas fa-user-cog"></i></div>
+                      Kelola SDM
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>

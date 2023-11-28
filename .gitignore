@@ -1,0 +1,7 @@
+__pycache__
+*.sqlite
+venv
+tests
+migrations
+absen/node_modules
+.flaskenv

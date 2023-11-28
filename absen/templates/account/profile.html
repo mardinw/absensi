@@ -1,0 +1,357 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile - {{ user.username }}{% endblock %}
+
+{% block body %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Profil {{ user.username.title() }}</h1>
+{% if current_user.is_administrator() %}
+<p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
+{% endif %}
+<div class="card p-4 mb-3 shadow">
+  <div class="body">
+    <div class="row mb-3">
+      <form action="" method="post" novalidate>
+      {% for message in get_flashed_messages() %}
+      <div class="alert alert-success">
+          {{ message }}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Nama Lengkap</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.nama_lengkap %}
+          <label class="text-center mt-2" for="ForFullname">{{ profil.nama_lengkap.title() }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Tempat Lahir</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.tempat_lahir %}
+          <label class="mt-2 text-center" for="ForAboutMe">{{ profil.tempat_lahir }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Tanggal Lahir</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.tanggal_lahir %}
+          <label class="mt-2 text-center" for="ForAboutMe">{{ profil.tanggal_lahir }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Tentang Saya</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.tentang_saya %}
+          <label class="mt-2 text-center" for="ForAboutMe">{{ profil.tentang_saya }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Terdaftar Sejak</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if user.member_since %}
+          <label class="mt-2 text-center" for="ForMemberSince">{{ user.member_since }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Divisi</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.divisi %}
+          <label class="mt-2 text-center" for="ForDivisi">{{ profil.divisi }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Jabatan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.jabatan %}
+          <label class="mt-2 text-center" for="ForJabatan">{{ profil.jabatan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Lokasi Kantor</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.lokasi_kantor %}
+          <label class="mt-2 text-center" for="ForLokasi">{{ profil.lokasi_kantor }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for=""><span>Status Kepegawaian</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.status_pegawai %}
+          <label class="mt-2 text-center" for="ForStatusPegwai">{{ profil.status_pegawai }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForLastStudy"><span>Pendidikan Terakhir</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.pendidikan_terakhir %}
+          <label class="mt-2 text-center" for="ForLastStudy">{{ profil.pendidikan_terakhir }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForGelar"><span>Gelar Pendidikan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.gelar_pendidikan %}
+          <label class="mt-2 text-center" for="ForGelar">{{ profil.gelar_pendidikan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForGelar"><span>Nama Almamater</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.nama_almamater %}
+          <label class="mt-2 text-center" for="ForAlmamater">{{ profil.nama_almamater }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForJurusan"><span>Jurusan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.jurusan %}
+          <label class="mt-2 text-center" for="ForJurusan">{{ profil.jurusan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForAddresBefore"><span>Alamat Asal</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.alamat_asal %}
+          <label class="mt-2 text-center" for="ForAddressBefore">{{ profil.alamat_asal }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForAddresNow"><span>Alamat Domisili</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.alamat_domisili %}
+          <label class="mt-2 text-center" for="ForAddressNow">{{ profil.alamat_domisili }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForBlood"><span>Golongan Darah</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.golongan_darah %}
+          <label class="mt-2 text-center" for="ForBlood">{{ profil.golongan_darah }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForBlood"><span>Jenis Kelamin</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.jenis_kelamin %}
+          <label class="mt-2 text-center" for="ForGender">{{ profil.jenis_kelamin }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 fw-bold form_text" for="ForBlood"><span>Status Menikah</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.status_pernikahan %}
+          <label class="mt-2 text-center" for="ForBlood">{{ profil.status_pernikahan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% if profil.nama_pasangan %}
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 fw-bold form_text" for="ForNamaPasangan"><span>Nama Suami/Istri</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.nama_pasangan %}
+          <label class="mt-2 text-center" for="ForBlood">{{ profil.nama_pasangan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="row mb-3">
+      <label class="fw-bold col-form-label col-sm-3 form_text" for="ForReligion"><span>Agama</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.agama %}
+          <label class="mt-2 text-center" for="ForReligion">{{ profil.agama }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 fw-bold form_text" for="ForWargaNegara"><span>Kewarganegaraan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.warga_negara %}
+          <label class="mt-2 text-center" for="ForWargaNegara">{{ profil.warga_negara }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-3 form_text fw-bold" for="ForNIK"><span>NIK KTP</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.nik %}
+          <label class="mt-2 text-center" for="ForNIK">{{ profil.nik }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForNPWP"><span>NPWP</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.npwp %}
+          <label class="mt-2 text-center" for="ForNPWP" id="IdNpwp">{{ profil.npwp }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForBPJSTK"><span>No. BPJS Ketenagakerjaan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.no_bpjs_ketenagakerjaan %}
+          <label class="mt-2 text-center" for="ForBPJSTK">{{ profil.no_bpjs_ketenagakerjaan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForBPJSKes"><span>No. BPJS Kesehatan</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.no_bpjs_kesehatan %}
+          <label class="mt-2 text-center" for="ForBPJSKes">{{ profil.no_bpjs_kesehatan }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForNoHP"><span>No Handphone</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.no_hp %}
+          <label class="mt-2 text-center" for="ForNoHP">{{ profil.no_hp }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForZone"><span>Zona Waktu</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.zona_waktu %}
+          <label class="mt-2 text-center" for="ForZone">{{ profil.zona_waktu }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% if nama_anak %}
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForChild"><span>Nama Anak</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.zona_waktu %}
+          <label class="mt-2 text-center" for="ForChild">{{ profil.zona_waktu }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForWali"><span>Nama Wali</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.nama_wali %}
+          <label class="mt-2 text-center" for="ForWali">{{ profil.nama_wali }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForHubWali"><span>Hubungan Wali</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.hubungan_wali %}
+          <label class="mt-2 text-center" for="ForHubWali">{{ profil.hubungan_wali }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+    <div class="row mb-3">
+      <label class="col-form-label fw-bold col-sm-3 form_text" for="ForAlamatWali"><span>Alamat Wali</span>:</label>
+      <div class="col-sm-4">
+        {% if user == current_user %}
+          {% if profil.alamat_wali %}
+          <label class="mt-2 text-center" for="ForAlamatWali">{{ profil.alamat_wali }}</label>
+          {% endif %}
+        {% endif %}
+      </div>
+    </div>
+<div class='col-12'>
+  {% if user == current_user %}
+    <a href="{{ url_for('profil.edit_profile', id=current_user.id) }}" class="mb-3 btn btn-primary">Ubah Data</a>
+    <a href="{{ url_for('hadir.index') }}" class="mb-3 btn btn-warning text-white">Kembali</a>
+  {% endif %}
+</div>
+      </form>
+                    </div>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+{% endblock %}

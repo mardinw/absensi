@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% set active_page = 'hadir.checkin' %}
+{% block title %}Absen - Masuk{% endblock %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block body %}
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4 mb-4 text-primary">Input Masuk</h1>
+                        <hr>
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning">
+    <button class="btn-close" type="button" aria-label="Close"></button>
+        {{ message }}
+</div>
+{% endfor %}
+                        <div class="row">
+                            <form action="#" method="POST">
+                                {{ form.hidden_tag() }}
+                                <div class="row mb-3">
+                                    <label for="" class="col-form-label col-sm-2">Nama Pengguna</label>
+                                    <div class="col-sm-4">
+                                        <label type="text" class="col-form-label">{{ current_user.username.title() }}</label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-form-label col-sm-2">Posisi</label>
+                                    <div class="col-sm-4">
+                                        <label type="text" class="col-form-label">{{ profil.jabatan }}</label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-form-label col-sm-2">Divisi</label>
+                                    <div class="col-sm-4">
+                                        <label type="text" class="col-form-label">{{ profil.divisi }}</label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="" class="col-form-label col-sm-2">Kantor</label>
+                                    <div class="col-sm-4">
+                                        <label type="text" class="col-form-label">{{ profil.lokasi_kantor }}</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    {{ form.dates.label(class='col-form-label col-sm-2') }}
+                                    <div class="col-sm-4">
+                                        {{ form.dates(type='date', class='form-control') }}
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    {{ form.jam_input.label(class='col-form-label col-sm-2') }}
+                                    <div class="col-sm-4">
+                                        {{ form.jam_input(type='time', class='form-control') }}
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    {{ form.submit(class='mb-3 btn btn-primary') }}
+                                    <a href="{{ url_for('.index') }}" class="mb-3 btn btn-warning text-white">Kembali</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            {% include '_footer.html' %}
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+{% endblock %}
